@@ -4,7 +4,7 @@ import {describe, expect, it, test} from "@jest/globals";
 const getRandomIntFrom0ToBound = (bound: number): number => Math.floor(Math.random() * bound);
 
 
-test('givenEmptyGame_thenScoreShouldReturn0', () => {
+test('Given an empty game, score should return 0', () => {
     //given
     const game = new Game();
 
@@ -15,7 +15,7 @@ test('givenEmptyGame_thenScoreShouldReturn0', () => {
     expect(actualScore).toBe(0);
 })
 
-test('givenEmptyGame_whenCallingRollX_thenScoreShouldReturnX', () => {
+test('Given an empty game, when calling roll(x), score should return x', () => {
     //given
     const game = new Game();
 
@@ -29,7 +29,7 @@ test('givenEmptyGame_whenCallingRollX_thenScoreShouldReturnX', () => {
     expect(actualScore).toBe(x);
 })
 
-test('givenGameWithNoSparesNorStrikes_thenScoreShouldReturnSummedRolls', () => {
+test('Given a game with no spares nor strikes, score should be the sum of the rolls', () => {
     //given
     const game = new Game();
 
@@ -60,7 +60,7 @@ test('givenGameWithNoSparesNorStrikes_thenScoreShouldReturnSummedRolls', () => {
 })
 
 
-describe('givenGameWithSpare_thenScoreShouldDoubleTheRollAfterSpare', () => {
+describe('Given a game with a spare, score should double the next roll', () => {
     it.each([
         [[8, 2, 2, 4, 5, 4, 3, 3, 2, 3, 2, 5, 7, 0, 0, 1, 5, 1, 2, 6], 67],
         [[2, 8, 7, 2, 8, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 63],
@@ -83,7 +83,7 @@ describe('givenGameWithSpare_thenScoreShouldDoubleTheRollAfterSpare', () => {
     })
 })
 
-describe('givenGameWithStrike_thenScoreShouldDoubleTheTwoRollsAfterStrike', () => {
+describe('Given a game with a strike, score should double the next two rolls', () => {
     it.each([
         [[8, 2, 2, 4, 5, 4, 3, 3, 10, 2, 5, 7, 0, 0, 1, 5, 1, 2, 6], 79],
         [[2, 8, 7, 2, 8, 1, 2, 2, 10, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2], 73],
@@ -105,7 +105,7 @@ describe('givenGameWithStrike_thenScoreShouldDoubleTheTwoRollsAfterStrike', () =
     })
 })
 
-describe('givenGameWithSpareInLastFrame_thenScoreShouldIncludeTheBonusRoll', () => {
+describe('Given a game with a spare in the last frame, score should include the bonus roll', () => {
     it.each([
         [[8, 2, 2, 4, 5, 4, 3, 3, 10, 2, 5, 7, 0, 0, 1, 5, 1, 4, 6, 4], 85],
         [[2, 8, 7, 2, 8, 1, 2, 2, 10, 2, 2, 2, 2, 2, 2, 2, 2, 2, 8, 3], 82],
@@ -127,7 +127,7 @@ describe('givenGameWithSpareInLastFrame_thenScoreShouldIncludeTheBonusRoll', () 
     })
 })
 
-describe('givenGameWithStrikeInLastFrame_thenScoreShouldIncludeTheBonusRoll', () => {
+describe('Given a game with a strike in the last frame, score should include the bonus rolls', () => {
     it.each([
         [[8, 2, 2, 4, 5, 4, 3, 3, 10, 2, 5, 7, 0, 0, 1, 5, 1, 10, 6, 4], 91],
         [[2, 8, 7, 2, 8, 1, 2, 2, 10, 2, 2, 2, 2, 2, 2, 2, 2, 10, 8, 3], 90],
@@ -149,13 +149,13 @@ describe('givenGameWithStrikeInLastFrame_thenScoreShouldIncludeTheBonusRoll', ()
     })
 })
 
-describe('givenGameWithAllSpares_thenScoreShouldIncludeBonusRolls', () => {
+describe('Given a game with all spares, score should include bonus rolls', () => {
     it.each([
         [[9, 1, 2, 8, 0, 10, 1, 9, 9, 1, 1, 9, 8, 2, 4, 6, 2, 8, 4, 6, 3],134],
         [[6, 4, 0, 10, 3, 7, 8, 2, 7, 3, 6, 4, 3, 7, 4, 6, 4, 6, 5, 5, 8],148],
         [[5, 5, 4, 6, 4, 6, 4, 6, 7, 3, 5, 5, 4, 6, 5, 5, 4, 6, 1, 9, 0],138],
         [[4, 6, 6, 4, 1, 9, 0, 10, 8, 2, 1, 9, 4, 6, 9, 1, 8, 2, 5, 5, 5],147]
-    ])("", (rolls: number[], expectedScore: number) => {
+    ])('', (rolls: number[], expectedScore: number) => {
         //given
         const game = new Game();
 
@@ -172,7 +172,7 @@ describe('givenGameWithAllSpares_thenScoreShouldIncludeBonusRolls', () => {
 })
 
 
-test('givenGameWithAllSpares_thenScoreShouldIncludeBonusRolls', () => {
+test('Given a game with all spares, score should include bonus rolls', () => {
     //given
     const game = new Game();
     let expectedScore: number = 100;  //since frames are 10 and there's a spare in each frame, the score it's a minimum of 100
@@ -198,7 +198,7 @@ test('givenGameWithAllSpares_thenScoreShouldIncludeBonusRolls', () => {
 
 })
 
-test('givenGameWithAllSpares_thenScoreShouldIncludeBonusRolls', () => {
+test('Given a game with all strikes (max points), score should return 300', () => {
     //given
     const game = new Game();
     for (let i = 0; i < 12; i++) {
